@@ -1,0 +1,81 @@
+-3-
+/*Select the movies of this director*/ SELECT movies.title
+FROM movies, movdir
+WHERE movdir.name =’Phillips Smalley’ AND movdir.imdbId=movies.imdbId; –Those–
+
+–4–
+/*select the director of this movie*/ SELECT movdir.name
+FROM movies, movdir
+WHERE movies.title =’The Ring’ AND movdir.imdbId=movies.imdbId; –7.19 ms–
+
+–5–
+/*Select the movies of this genre*/ SELECT movies.title
+FROM genre,movies
+WHERE genre.imdbId=movies.imdbId AND genre.genre=’Drama’;
+
+–6–
+/*—————-*/
+SELECT temptable.bookname
+FROM (SELECT movies.title as moviename,books.title as bookname FROM movies, genres, books
+WHERE genre.imdbId = movies.imdbId
+AND genre.genre =’Horror’
+AND movies.title = books.title
+AND movies.year = books.year) AS temptable;
+
+–7–
+/*What is the kind of onlineavailablity of the book 30 Days of Night.*/ SELECT books.title, books.epubAvailable, books.pdfAvailable
+FROM books
+WHERE books.ebookAvailable = ’1’ AND books.title=’30 Days of Night’;
+
+–8–
+/*——-*/
+SELECT movies.director
+FROM movies, books
+WHERE books.author = .......... AND movies.title = books.movie AND movies.year = books.year;
+
+–9–
+/*Select the movies of this writer*/ SELECT movies.title
+FROM movies, movwriter
+WHERE movwriter.imdbId=movies.imdbId AND movwriter.name=’Lois Weber’;
+
+–10–
+/*Maximun number of actors in which movie*/
+SELECT movies.title
+FROM (SELECT movies.imdbIid AS io, count(actmov.actorId) FROM movies, actmov
+WHERE actmov.imdbId=movies.imdbId
+GROUP BY movies.imdbId order by count desc) AS awe, movies where io=movies.imdbId limit 1;
+
+–11–
+/*Those actor who have acted in a movie produced by */
+
+–12–
+/*Dead actors*/
+SELECT actors.name
+
+FROM actors
+WHERE extract(year from currentDate)-extract(year from deathDate) ¿ 0;
+
+–13–
+/*Find the actors who have played a particular genres*/ SELECT distinct actors.name
+FROM (SELECT actmov.actorId as qwe
+FROM actors, genre, movies, actmov
+WHERE genre.imdbId=movies.imdbId
+AND actmov.imdbId=movies.imdbId
+AND genre.genre=’Drama’) AS dfg, actors
+where actors.actorId=dfg.qwe;
+
+–14–
+SELECT book
+FROM movbook
+WHERE movieTitle=’Pearl Harbor’;
+
+–15–
+SELECT rating
+FROM (SELECT movieTitle
+FROM movbook
+WHERE book=’Twilight’) AS wer, movies WHERE wer.movieTitle=movies.title;
+
+–16–
+SELECT counts
+FROM books
+WHERE title=’The Hunger Games: Movie Tie-In Edition’;
