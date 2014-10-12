@@ -1,0 +1,20 @@
+CREATE function func3 () returns trigger as $func3$ declare
+  gogo int;
+  begin
+  select min(counts) into gogo from actorsNew;
+  if (NEW.counts ¿ gogo) then
+  drop table actorsNew;
+  create table actorsNew as (select * from actors order by counts DESC limit 20); end if;
+  return null;
+  end;
+$func3$ LANGUAGE plpgsql; 
+  create trigger newActors 
+  after update
+  of counts on actors
+  for each row
+  execute procedure func3();
+–update– 
+  –update actors set counts=10 where actorId=’43429’;
+–drop– 
+  –drop trigger newMovies on movies; 
+  –drop function func3();
