@@ -1,0 +1,22 @@
+CREATE function func2 () returns trigger as $func2$ declare
+  gogo int;
+  begin
+  select min(counts) into gogo from booksNew;
+  if (NEW.counts ¿ gogo) then
+  drop table moviesNew;
+  create table moviesNew as (select * from movies order by counts DESC limit 20);
+  end if; 
+  return null; 
+  end;
+$func2$ LANGUAGE plpgsql; 
+  CREATE trigger newMovies 
+  after update
+  of counts on movies
+  for each row
+  execute procedure func2();
+  
+–update– –update movies set counts=10 where imdbId=’tt0000420’;
+
+–drop–
+  –drop trigger newMovies on movies; 
+  –drop function func2();
