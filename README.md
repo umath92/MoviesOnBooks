@@ -1,7 +1,7 @@
 MoviesOnBooks
 =============
 
-MoviesOnBooks is a website which features all movies based on books eg. Harry Potter, A beautiful mind, etc. It is a platform where users can query books or, and movies. The query result contains inormation about actors, graphics, characters, comics etc.; All this information has voon crawled from the web.
+MoviesOnBooks is a website which features all movies based on books eg. Harry Potter, A beautiful mind, etc. It is a platform where users can query books or, and movies. The query result contains inormation about actors, graphics, characters, comics etc.; All this information has been crawled from the web.
 
 This database was created on PostgreSQL and webcrawling was done using PHP. 
 
